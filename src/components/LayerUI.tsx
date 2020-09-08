@@ -502,7 +502,7 @@ const LayerUI = ({
                 zoom={appState.zoom}
               />
             </Island>
-            {renderEncryptedIcon()}
+            {/* {renderEncryptedIcon()} */}
           </Section>
         </Stack.Col>
       </div>
@@ -579,7 +579,7 @@ const LayerUI = ({
       )}
       {renderFixedSideContainer()}
       {renderBottomAppMenu()}
-      {
+     {/*  {
         <aside
           className={`layer-ui__wrapper__github-corner zen-mode-transition ${
             zenModeEnabled && "transition-right"
@@ -587,8 +587,8 @@ const LayerUI = ({
         >
           <GitHubCorner appearance={appState.appearance} />
         </aside>
-      }
-      {renderFooter()}
+      } */}
+     {/*  {renderFooter()} */}
     </div>
   );
 };
