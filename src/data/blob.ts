@@ -38,7 +38,7 @@ export const loadFromBlob = async (blob: any, appState?: AppState) => {
   let _appState = appState || defaultAppState;
   try {
     const data = JSON.parse(contents);
-    if (data.type !== "excalidraw") {
+    if (data.type !== "aimxcel") {
       throw new Error(t("alerts.couldNotLoadInvalidFile"));
     }
     elements = data.elements || [];
@@ -58,7 +58,7 @@ export const loadFromBlob = async (blob: any, appState?: AppState) => {
 export const loadLibraryFromBlob = async (blob: any) => {
   const contents = await loadFileContents(blob);
   const data: LibraryData = JSON.parse(contents);
-  if (data.type !== "excalidrawlib") {
+  if (data.type !== "aimxcellib") {
     throw new Error(t("alerts.couldNotLoadInvalidFile"));
   }
   return data;

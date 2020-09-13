@@ -13,7 +13,7 @@ export const serializeAsJSON = (
 ): string =>
   JSON.stringify(
     {
-      type: "excalidraw",
+      type: "aimxcel",
       version: 2,
       source: window.location.origin,
       elements: elements.filter((element) => !element.isDeleted),
@@ -32,13 +32,13 @@ export const saveAsJSON = async (
   const blob = new Blob([serialized], {
     type: "application/json",
   });
-  const name = `${appState.name}.excalidraw`;
+  const name = `${appState.name}.aimxcel`;
   (window as any).handle = await fileSave(
     blob,
     {
       fileName: name,
-      description: "Excalidraw file",
-      extensions: ["excalidraw"],
+      description: "Aimxcel file",
+      extensions: ["aimxcel"],
     },
     fileHandle || null,
   );
@@ -46,8 +46,8 @@ export const saveAsJSON = async (
 
 export const loadFromJSON = async (appState: AppState) => {
   const blob = await fileOpen({
-    description: "Excalidraw files",
-    extensions: ["json", "excalidraw"],
+    description: "Aimxcel files",
+    extensions: ["json", "aimxcel"],
     mimeTypes: ["application/json"],
   });
   return loadFromBlob(blob, appState);
@@ -57,28 +57,28 @@ export const saveLibraryAsJSON = async () => {
   const library = await loadLibrary();
   const serialized = JSON.stringify(
     {
-      type: "excalidrawlib",
+      type: "aimxcellib",
       version: 1,
       library,
     },
     null,
     2,
   );
-  const fileName = `library.excalidrawlib`;
+  const fileName = `library.aimxcellib`;
   const blob = new Blob([serialized], {
-    type: "application/vnd.excalidrawlib+json",
+    type: "application/vnd.aimxcellib+json",
   });
   await fileSave(blob, {
     fileName,
-    description: "Excalidraw library file",
-    extensions: ["excalidrawlib"],
+    description: "Aimxcel library file",
+    extensions: ["aimxcellib"],
   });
 };
 
 export const importLibraryFromJSON = async () => {
   const blob = await fileOpen({
-    description: "Excalidraw library files",
-    extensions: ["json", "excalidrawlib"],
+    description: "Aimxcel library files",
+    extensions: ["json", "aimxcellib"],
     mimeTypes: ["application/json"],
   });
   Library.importLibrary(blob);
