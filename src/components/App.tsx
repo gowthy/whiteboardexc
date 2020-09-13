@@ -3431,7 +3431,7 @@ class App extends React.Component<ExcalidrawProps, AppState> {
 
   private handleCanvasOnDrop = (event: React.DragEvent<HTMLCanvasElement>) => {
     const libraryShapes = event.dataTransfer.getData(
-      "application/vnd.excalidrawlib+json",
+      "application/vnd.aimxcellib+json",
     );
     if (libraryShapes !== "") {
       this.addElementsFromPasteOrLibrary(

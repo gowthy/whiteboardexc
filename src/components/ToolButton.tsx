@@ -1,6 +1,7 @@
 import "./ToolIcon.scss";
 
-import React from "react";
+import React, { CSSProperties } from "react";
+
 
 type ToolIconSize = "s" | "m";
 
@@ -20,6 +21,7 @@ type ToolButtonBaseProps = {
   visible?: boolean;
   selected?: boolean;
   className?: string;
+ // style?: CSSProperties;
 };
 
 type ToolButtonProps =
@@ -36,7 +38,7 @@ type ToolButtonProps =
     });
 
 const DEFAULT_SIZE: ToolIconSize = "m";
-
+const labelStyle: CSSProperties = { width:'7rem'}
 export const ToolButton = React.forwardRef((props: ToolButtonProps, ref) => {
   const innerRef = React.useRef(null);
   React.useImperativeHandle(ref, () => innerRef.current);
@@ -78,7 +80,7 @@ export const ToolButton = React.forwardRef((props: ToolButtonProps, ref) => {
   }
 
   return (
-    <label className={`ToolIcon ${props.className ?? ""}`} title={props.title}>
+    <label className={`ToolIcon ${props.className ?? ""}`} title={props.title} style={labelStyle} >
       <input
         className={`ToolIcon_type_radio ${sizeCn}`}
         type="radio"
@@ -97,6 +99,7 @@ export const ToolButton = React.forwardRef((props: ToolButtonProps, ref) => {
           <span className="ToolIcon__keybinding">{props.keyBindingLabel}</span>
         )}
       </div>
+        <label>{props["aria-label"]}</label>
     </label>
   );
 });

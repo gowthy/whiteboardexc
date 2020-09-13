@@ -78,7 +78,7 @@ export const LibraryUnit = ({
         onDragStart={(event) => {
           setIsHovered(false);
           event.dataTransfer.setData(
-            "application/vnd.excalidrawlib+json",
+            "application/vnd.aimxcellib+json",
             JSON.stringify(elements),
           );
         }}

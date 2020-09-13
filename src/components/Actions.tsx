@@ -131,6 +131,7 @@ export const ShapesSwitcher = ({
           checked={elementType === value}
           name="editor-current-shape"
           title={`${capitalizeString(label)} — ${shortcut}`}
+          
           keyBindingLabel={`${index + 1}`}
           aria-label={capitalizeString(label)}
           aria-keyshortcuts={`${key} ${index + 1}`}
@@ -145,9 +146,11 @@ export const ShapesSwitcher = ({
             setAppState({});
           }}
         />
+        
       );
     })}
-    <ToolButton
+    
+   {/*  <ToolButton
       className="Shape"
       type="button"
       icon={LIBRARY_ICON}
@@ -159,7 +162,7 @@ export const ShapesSwitcher = ({
       onClick={() => {
         setAppState({ isLibraryOpen: !isLibraryOpen });
       }}
-    />
+    /> */}
   </>
 );
 

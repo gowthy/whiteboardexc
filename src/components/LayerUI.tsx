@@ -364,20 +364,20 @@ const LayerUI = ({
             {actionManager.renderAction("saveAsScene")}
             {renderExportDialog()}
             {actionManager.renderAction("clearCanvas")}
-            <RoomDialog
+           {/*  <RoomDialog
               isCollaborating={appState.isCollaborating}
               collaboratorCount={appState.collaborators.size}
               username={appState.username}
               onUsernameChange={onUsernameChange}
               onRoomCreate={onRoomCreate}
               onRoomDestroy={onRoomDestroy}
-            />
+            /> */}
           </Stack.Row>
-          <BackgroundPickerAndDarkModeToggle
+          {/* <BackgroundPickerAndDarkModeToggle
             actionManager={actionManager}
             appState={appState}
             setAppState={setAppState}
-          />
+          /> */}
         </Stack.Col>
       </Island>
     </Section>
@@ -438,7 +438,7 @@ const LayerUI = ({
             className={zenModeEnabled && "disable-pointerEvents"}
           >
             {renderCanvasActions()}
-            {shouldRenderSelectedShapeActions && renderSelectedShapeActions()}
+            {/* {shouldRenderSelectedShapeActions && renderSelectedShapeActions()} */}
           </Stack.Col>
           <Section heading="shapes">
             {(heading) => (
@@ -470,6 +470,7 @@ const LayerUI = ({
               zenModeEnabled && "transition-right"
             }`}
           >
+            {shouldRenderSelectedShapeActions && renderSelectedShapeActions()}
             {Array.from(appState.collaborators)
               // Collaborator is either not initialized or is actually the current user.
               .filter(([_, client]) => Object.keys(client).length !== 0)
