@@ -22,7 +22,7 @@
     {
       "action": "/",
       "accept": {
-        "application/vnd.excalidraw+json": [".excalidraw"]
+        "application/vnd.aimxcel+json": [".aimxcel"]
       }
     }
   ]
