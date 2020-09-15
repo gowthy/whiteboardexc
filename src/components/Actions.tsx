@@ -114,6 +114,63 @@ export const ShapesSwitcher = ({
   setAppState: (appState: Partial<AppState>) => void;
   isLibraryOpen: boolean;
 }) => (
+  ( <div className="dropdown">
+    <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown button
+  </button>
+  <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    {SHAPES.map(({ value, icon, key }, index) => {
+      const label = t(`toolBar.${value}`);
+      const letter = typeof key === "string" ? key : key[0];
+      const letterShortcut = /[a-z]/.test(letter) ? letter : `Shift+${letter}`;
+      const shortcut = `${capitalizeString(letterShortcut)} ${t(
+        "shortcutsDialog.or",
+      )} ${index + 1}`;
+      console.log('venkat' +label)
+      if(value != 'selection' && value != 'draw' && value != 'text'){
+      return(
+        <ToolButton
+          className="dropdown-item"
+          key={value}
+          type="radio"
+          icon={icon}
+          checked={elementType === value}
+          name="editor-current-shape"
+          title={`${capitalizeString(label)} — ${shortcut}`}
+          
+          keyBindingLabel={`${index + 1}`}
+          aria-label={capitalizeString(label)}
+          aria-keyshortcuts={`${key} ${index + 1}`}
+          data-testid={value}
+          onChange={() => {
+            setAppState({
+              elementType: value,
+              multiElement: null,
+              selectedElementIds: {},
+            });
+            setCursorForShape(value);
+            setAppState({});
+          }}
+        />
+      );
+        }
+    })}
+    </div>
+    </div>
+    )
+  
+);
+
+
+export const ShapesSwitcher1 = ({
+  elementType,
+  setAppState,
+  isLibraryOpen,
+}: {
+  elementType: ExcalidrawElement["type"];
+  setAppState: (appState: Partial<AppState>) => void;
+  isLibraryOpen: boolean;
+}) => (
   <>
     {SHAPES.map(({ value, icon, key }, index) => {
       const label = t(`toolBar.${value}`);
@@ -122,6 +179,7 @@ export const ShapesSwitcher = ({
       const shortcut = `${capitalizeString(letterShortcut)} ${t(
         "shortcutsDialog.or",
       )} ${index + 1}`;
+      if(value == 'selection' || value == 'draw' || value == 'text'){
       return (
         <ToolButton
           className="Shape"
@@ -148,6 +206,7 @@ export const ShapesSwitcher = ({
         />
         
       );
+        }
     })}
     
    {/*  <ToolButton
@@ -165,6 +224,7 @@ export const ShapesSwitcher = ({
     /> */}
   </>
 );
+
 
 export const ZoomActions = ({
   renderAction,

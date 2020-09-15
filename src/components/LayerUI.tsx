@@ -26,7 +26,7 @@ import useIsMobile from "../is-mobile";
 
 import { ExportType } from "../scene/types";
 import { MobileMenu } from "./MobileMenu";
-import { ZoomActions, SelectedShapeActions, ShapesSwitcher } from "./Actions";
+import { ZoomActions, SelectedShapeActions, ShapesSwitcher, ShapesSwitcher1 } from "./Actions";
 import { Section } from "./Section";
 import { RoomDialog } from "./RoomDialog";
 import { ErrorDialog } from "./ErrorDialog";
@@ -447,11 +447,16 @@ const LayerUI = ({
                   <Island padding={1} className={zenModeEnabled && "zen-mode"}>
                     {heading}
                     <Stack.Row gap={1}>
-                      <ShapesSwitcher
+                    <ShapesSwitcher1
                         elementType={appState.elementType}
                         setAppState={setAppState}
                         isLibraryOpen={appState.isLibraryOpen}
                       />
+                      <ShapesSwitcher
+                        elementType={appState.elementType}
+                        setAppState={setAppState}
+                        isLibraryOpen={appState.isLibraryOpen}
+                      />                     
                     </Stack.Row>
                   </Island>
                   <LockIcon
