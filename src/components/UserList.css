@@ -2,7 +2,9 @@
   pointer-events: none;
   /*github corner*/
   padding: var(--space-factor) 40px var(--space-factor) var(--space-factor);
-  display: flex;
+  /* display: flex; */
+  width: 250px;
+  height: 800px;
   flex-wrap: wrap;
   /*justify-content: flex-end;*/
 }
