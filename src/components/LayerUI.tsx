@@ -359,6 +359,7 @@ const LayerUI = ({
       <Island padding={2} style={{ zIndex: 1 }}>
         <Stack.Col gap={4}>
           <Stack.Row gap={1} justifyContent="space-between">
+            {<div className="d-flex align-items-center" style={{backgroundColor:"#1C1565"}}><label style={{width:"10rem", marginBottom:"0px", color:"#fff"}}>ABCLearn WhiteBoard</label></div>}
             {actionManager.renderAction("loadScene")}
             {actionManager.renderAction("saveScene")}
             {actionManager.renderAction("saveAsScene")}
@@ -439,7 +440,26 @@ const LayerUI = ({
           >
             {renderCanvasActions()}
             {/* {shouldRenderSelectedShapeActions && renderSelectedShapeActions()} */}
+            <UserList
+            className={`zen-mode-transition ${
+              zenModeEnabled && "transition-right"
+            }`}
+          >
+            {shouldRenderSelectedShapeActions && renderSelectedShapeActions()}
+            {Array.from(appState.collaborators)
+              // Collaborator is either not initialized or is actually the current user.
+              .filter(([_, client]) => Object.keys(client).length !== 0)
+              .map(([clientId, client]) => (
+                <Tooltip
+                  label={client.username || "Unknown user"}
+                  key={clientId}
+                >
+                  {actionManager.renderAction("goToCollaborator", clientId)}
+                </Tooltip>
+              ))}
+          </UserList>
           </Stack.Col>
+          
           <Section heading="shapes">
             {(heading) => (
               <Stack.Col gap={4} align="start">
@@ -470,24 +490,7 @@ const LayerUI = ({
               </Stack.Col>
             )}
           </Section>
-          <UserList
-            className={`zen-mode-transition ${
-              zenModeEnabled && "transition-right"
-            }`}
-          >
-            {shouldRenderSelectedShapeActions && renderSelectedShapeActions()}
-            {Array.from(appState.collaborators)
-              // Collaborator is either not initialized or is actually the current user.
-              .filter(([_, client]) => Object.keys(client).length !== 0)
-              .map(([clientId, client]) => (
-                <Tooltip
-                  label={client.username || "Unknown user"}
-                  key={clientId}
-                >
-                  {actionManager.renderAction("goToCollaborator", clientId)}
-                </Tooltip>
-              ))}
-          </UserList>
+         
         </div>
       </FixedSideContainer>
     );

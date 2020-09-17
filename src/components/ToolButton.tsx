@@ -38,7 +38,7 @@ type ToolButtonProps =
     });
 
 const DEFAULT_SIZE: ToolIconSize = "m";
-const labelStyle: CSSProperties = { width:'7rem'}
+const labelStyle: CSSProperties = { width:'8.5rem', marginBottom:'0px'}
 export const ToolButton = React.forwardRef((props: ToolButtonProps, ref) => {
   const innerRef = React.useRef(null);
   React.useImperativeHandle(ref, () => innerRef.current);
@@ -62,8 +62,9 @@ export const ToolButton = React.forwardRef((props: ToolButtonProps, ref) => {
         type="button"
         onClick={props.onClick}
         ref={innerRef}
+        style={labelStyle}
       >
-        <div className="ToolIcon__icon" aria-hidden="true">
+        <div className="ToolIcon__icon" aria-hidden="true" style={{width:"inherit",backgroundPosition:"center",backgroundSize:"contain",backgroundRepeat:"no-repeat", backgroundImage:"url("+props["aria-label"].replace(/ /g, '%20')+".png)"}}>
           {props.icon || props.label}
           {props.keyBindingLabel && (
             <span className="ToolIcon__keybinding">
@@ -93,13 +94,13 @@ export const ToolButton = React.forwardRef((props: ToolButtonProps, ref) => {
         checked={props.checked}
         ref={innerRef}
       />
-      <div className="ToolIcon__icon">
-        {props.icon}
-        {props.keyBindingLabel && (
+      <div className="ToolIcon__icon" style={{width:"inherit",backgroundPosition:"center",backgroundSize:"contain",backgroundRepeat:"no-repeat", backgroundImage:"url("+props["aria-label"].replace(/ /g, '%20')+".png)"}}>
+        {/* {props.icon} */}
+       {/*  {props.keyBindingLabel && (
           <span className="ToolIcon__keybinding">{props.keyBindingLabel}</span>
-        )}
+        )} */}
       </div>
-        <label>{props["aria-label"]}</label>
+        {/* <label style={{marginBottom:"0px"}}>{props["aria-label"]}</label> */}
     </label>
   );
 });

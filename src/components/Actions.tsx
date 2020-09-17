@@ -116,7 +116,7 @@ export const ShapesSwitcher = ({
 }) => (
   ( <div className="dropdown">
     <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropdown button
+    Geometry
   </button>
   <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
     {SHAPES.map(({ value, icon, key }, index) => {
@@ -126,7 +126,7 @@ export const ShapesSwitcher = ({
       const shortcut = `${capitalizeString(letterShortcut)} ${t(
         "shortcutsDialog.or",
       )} ${index + 1}`;
-      console.log('venkat' +label)
+    //  console.log('venkat' +label)
       if(value != 'selection' && value != 'draw' && value != 'text'){
       return(
         <ToolButton
