@@ -21,7 +21,7 @@ type ToolButtonBaseProps = {
   visible?: boolean;
   selected?: boolean;
   className?: string;
- // style?: CSSProperties;
+  style?: CSSProperties;
 };
 
 type ToolButtonProps =
@@ -38,7 +38,7 @@ type ToolButtonProps =
     });
 
 const DEFAULT_SIZE: ToolIconSize = "m";
-const labelStyle: CSSProperties = { width:'8.5rem', marginBottom:'0px'}
+const labelStyle: CSSProperties = { width:'7.5rem', marginBottom:'0px'}
 export const ToolButton = React.forwardRef((props: ToolButtonProps, ref) => {
   const innerRef = React.useRef(null);
   React.useImperativeHandle(ref, () => innerRef.current);
@@ -79,9 +79,13 @@ export const ToolButton = React.forwardRef((props: ToolButtonProps, ref) => {
       </button>
     );
   }
-
+ console.log(props.title)
+ var c = '';
+ if(props["aria-label"]=="Rectangle" || props["aria-label"]=="Diamond" || props["aria-label"]=="Ellipse" || props["aria-label"]=="Arrow" || props["aria-label"]=="Line"){
+   c= 'dropdownstyle';
+ }
   return (
-    <label className={`ToolIcon ${props.className ?? ""}`} title={props.title} style={labelStyle} >
+    <label className={`ToolIcon ${props.className ?? ""} ${c}`} title={props.title} style={labelStyle} >
       <input
         className={`ToolIcon_type_radio ${sizeCn}`}
         type="radio"

@@ -16,6 +16,7 @@ import { capitalizeString, setCursorForShape } from "../utils";
 import Stack from "./Stack";
 import useIsMobile from "../is-mobile";
 import { getNonDeletedElements } from "../element";
+import  {CSSProperties}  from "react";
 
 export const SelectedShapeActions = ({
   appState,
@@ -104,7 +105,7 @@ const LIBRARY_ICON = (
     <path d="M296 32h192c13.255 0 24 10.745 24 24v160c0 13.255-10.745 24-24 24H296c-13.255 0-24-10.745-24-24V56c0-13.255 10.745-24 24-24zm-80 0H24C10.745 32 0 42.745 0 56v160c0 13.255 10.745 24 24 24h192c13.255 0 24-10.745 24-24V56c0-13.255-10.745-24-24-24zM0 296v160c0 13.255 10.745 24 24 24h192c13.255 0 24-10.745 24-24V296c0-13.255-10.745-24-24-24H24c-13.255 0-24 10.745-24 24zm296 184h192c13.255 0 24-10.745 24-24V296c0-13.255-10.745-24-24-24H296c-13.255 0-24 10.745-24 24v160c0 13.255 10.745 24 24 24z" />
   </svg>
 );
-
+const styleDropdown: CSSProperties = {padding:'0.25rem 0.5rem'}
 export const ShapesSwitcher = ({
   elementType,
   setAppState,
@@ -118,7 +119,7 @@ export const ShapesSwitcher = ({
     <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Geometry
   </button>
-  <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+  <div className="dropdown-menu" aria-labelledby="dropdownMenuButton" style={{minWidth:"0px"}}>
     {SHAPES.map(({ value, icon, key }, index) => {
       const label = t(`toolBar.${value}`);
       const letter = typeof key === "string" ? key : key[0];
@@ -131,6 +132,7 @@ export const ShapesSwitcher = ({
       return(
         <ToolButton
           className="dropdown-item"
+          style= {styleDropdown}
           key={value}
           type="radio"
           icon={icon}
