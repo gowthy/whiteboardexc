@@ -44,11 +44,18 @@ export const saveAsJSON = async (
   );
 };
 
+/* export const bindImage = async (appState: AppState) => {
+  return 
+}
+ */
+export const updateImage = async(appState: AppState) =>{
+  return "";
+};
 export const loadFromJSON = async (appState: AppState) => {
   const blob = await fileOpen({
     description: "Aimxcel files",
-    extensions: ["json", "aimxcel"],
-    mimeTypes: ["application/json"],
+    extensions: ["json", "aimxcel","png","jpg","jpeg"],
+    mimeTypes: ["application/json","image/jpeg","image/png"],
   });
   return loadFromBlob(blob, appState);
 };

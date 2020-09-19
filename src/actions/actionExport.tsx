@@ -1,6 +1,6 @@
 import React from "react";
 import { ProjectName } from "../components/ProjectName";
-import { saveAsJSON, loadFromJSON } from "../data";
+import { saveAsJSON, loadFromJSON, } from "../data";
 import { load, save, saveAs } from "../components/icons";
 import { ToolButton } from "../components/ToolButton";
 import { t } from "../i18n";
@@ -129,22 +129,26 @@ export const actionLoadScene = register({
     };
   },
   PanelComponent: ({ updateData, appState }) => (
-    <ToolButton
+   <div>
+     <input type="file" id="file-input"
+     ></input>
+     <ToolButton
       type="button"
       icon={load}
       title={t("buttons.load")}
       aria-label={t("buttons.load")}
       showAriaLabel={useIsMobile()}
-      onClick={() => {
+       onClick={() => {
         loadFromJSON(appState)
           .then(({ elements, appState }) => {
-            updateData({ elements: elements, appState: appState });
+            updateData(null);
           })
           .catch(muteFSAbortError)
           .catch((error) => {
             updateData({ error: error.message });
           });
-      }}
-    />
+      }} 
+    /> 
+    </div>
   ),
 });

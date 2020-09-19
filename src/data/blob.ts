@@ -6,7 +6,7 @@ import { LibraryData } from "./types";
 import { calculateScrollCenter } from "../scene";
 
 const loadFileContents = async (blob: any) => {
-  let contents: string;
+  let contents: any;
   if ("text" in Blob) {
     contents = await blob.text();
   } else {
@@ -14,8 +14,10 @@ const loadFileContents = async (blob: any) => {
       const reader = new FileReader();
       reader.readAsText(blob, "utf8");
       reader.onloadend = () => {
+        //console.log("helloooo")
         if (reader.readyState === FileReader.DONE) {
-          resolve(reader.result as string);
+          console.log("done")
+          resolve(reader.result);
         }
       };
     });
@@ -37,18 +39,21 @@ export const loadFromBlob = async (blob: any, appState?: AppState) => {
   let elements = [];
   let _appState = appState || defaultAppState;
   try {
-    const data = JSON.parse(contents);
-    if (data.type !== "aimxcel") {
+    console.log(contents)
+    //const data = JSON.parse(contents);
+   /*  if (data.type !== "aimxcel") {
       throw new Error(t("alerts.couldNotLoadInvalidFile"));
-    }
-    elements = data.elements || [];
-    _appState = {
-      ...defaultAppState,
-      appearance: _appState.appearance,
-      ...cleanAppStateForExport(data.appState as Partial<AppState>),
-      ...(appState ? calculateScrollCenter(elements, appState, null) : {}),
-    };
+    } */
+    elements.push(contents);// || [];
+    console.log("sdfsdhfhsdbjsdmfsdjfj")
+    //_appState = {
+      //...defaultAppState,
+     // appearance: _appState.appearance,
+      //...cleanAppStateForExport(data.appState as Partial<AppState>),
+      //...(appState ? calculateScrollCenter(elements, appState, null) : {}),
+   // };
   } catch {
+    console.log("error")
     throw new Error(t("alerts.couldNotLoadInvalidFile"));
   }
 

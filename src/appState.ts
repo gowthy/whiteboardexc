@@ -149,6 +149,7 @@ const _clearAppStateForStorage = <ExportType extends "export" | "browser">(
   appState: Partial<AppState>,
   exportType: ExportType,
 ) => {
+  console.log('venkat')
   type ExportableKeys = {
     [K in keyof typeof APP_STATE_STORAGE_CONF]: typeof APP_STATE_STORAGE_CONF[K][ExportType] extends true
       ? K

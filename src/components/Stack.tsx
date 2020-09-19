@@ -40,7 +40,6 @@ const ColStack = ({
   justifyContent,
   className,
 }: StackProps) => {
-  console.log(className+" ; "+align +' = '+gap);
   return (
     <div
       className={`Stack Stack_vertical ${className || ""}`}

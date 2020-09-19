@@ -79,7 +79,7 @@ export const ToolButton = React.forwardRef((props: ToolButtonProps, ref) => {
       </button>
     );
   }
- console.log(props.title)
+// console.log(props.title)
  var c = '';
  if(props["aria-label"]=="Rectangle" || props["aria-label"]=="Diamond" || props["aria-label"]=="Ellipse" || props["aria-label"]=="Arrow" || props["aria-label"]=="Line"){
    c= 'dropdownstyle';
